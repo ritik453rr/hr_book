@@ -1,3 +1,4 @@
+import 'package:core_hr/features/auth/controller/auth_controller.dart';
 import 'package:core_hr/features/auth/pages/login_page.dart';
 import 'package:core_hr/features/dashboard/page/dashboard_page.dart';
 import 'package:core_hr/features/splash/controller/splash_controller.dart';
@@ -16,7 +17,13 @@ class AppPages {
       }),
     ),
 
-    GetPage(name: AppRoutes.login, page: () => LoginPage()),
+    GetPage(
+      name: AppRoutes.login,
+      page: () => LoginPage(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => AuthController());
+      }),
+    ),
 
     GetPage(name: AppRoutes.dashboard, page: () => DashboardPage()),
   ];
