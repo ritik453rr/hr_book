@@ -16,17 +16,19 @@ class SplashPage extends StatelessWidget {
     AppConstants.setSafeArea();
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Get.width.w,
-            Image.asset(Assets.pngAppLogo, width: 240),
-            Padding(
-              padding: const EdgeInsets.only(left: 12),
-              child: Text("HR BOOK", style: AppTextStyle.robotoBold24),
-            ),
-          ],
+        child: SizedBox(
+          width: Get.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(Assets.pngAppLogo, width: 240),
+              Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Text("HR BOOK", style: AppTextStyle.robotoBold24),
+              ),
+            ],
+          ),
         ),
       ),
     );

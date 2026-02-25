@@ -1,3 +1,4 @@
+import 'package:core_hr/core/constants/app_constants.dart';
 import 'package:core_hr/navigation/app_pages.dart';
 import 'package:core_hr/navigation/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.pages,
       initialRoute: AppRoutes.splash,
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+      defaultTransition: Transition.rightToLeft
     );
   }
 }

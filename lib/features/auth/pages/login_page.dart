@@ -1,5 +1,6 @@
-import 'package:core_hr/core/common/custom_button.dart';
-import 'package:core_hr/core/common/custom_text_field.dart';
+import 'package:core_hr/core/constants/common_ui.dart';
+import 'package:core_hr/core/constants/custom_button.dart';
+import 'package:core_hr/core/constants/custom_text_field.dart';
 import 'package:core_hr/core/constants/app_constants.dart';
 import 'package:core_hr/core/constants/assets.dart';
 import 'package:core_hr/core/text/app_text_style.dart';
@@ -20,7 +21,7 @@ class LoginPage extends StatelessWidget {
         AppConstants.hideKeyBoard();
       },
       child: Scaffold(
-        body: SafeArea(
+        body: CommonUi.safeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: AppConstants.hzSpace),
             child: Form(
@@ -35,7 +36,6 @@ class LoginPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Get.width.w,
                           AppConstants.topSpace.h,
                           Center(
                             child: Image.asset(Assets.pngSplashImg, width: 300),
@@ -47,15 +47,9 @@ class LoginPage extends StatelessWidget {
                             controller: controller.emailController,
                             hintText: "Enter email...",
                             validator: (val) => AppConstants.validateEmail(val),
-                          ),
-                          16.h,
-                          Text("Password", style: AppTextStyle.robotoMedium14),
-                          4.h,
-                          CustomTextField(
-                            controller: controller.passwordController,
-                            hintText: "Enter password...",
-                            validator:
-                                (val) => AppConstants.fieldIsRequired(val),
+                            onChanged: (value) {
+                              controller.onChangeLoginEmail(formKey);
+                            },
                           ),
                         ],
                       ),
@@ -63,8 +57,10 @@ class LoginPage extends StatelessWidget {
                   ),
                   CustomButton(
                     title: "Login",
+                    isLoading: false.obs,
+                    enable: controller.enableLoginBtn,
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {}
+                      controller.onTapLogin(formKey: formKey);
                     },
                   ),
                   AppConstants.bottomSpace.h,
